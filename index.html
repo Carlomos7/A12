@@ -23,8 +23,8 @@
     </form>
 </div>
 <script>
+      var email = form.email.value;
     function setCookie(){
-      let email = form.email.value;
       let today = new Date();
       let expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000);
       let expires = "expires="+ expiry.toUTCString();
@@ -49,6 +49,10 @@
     let user_email = getCookie("email");
     if(user_email != "") {
       alert("This is your email: " + user_email); 
-    }
+    } else {
+     user = prompt("Please enter your name:","");
+     if (email) {
+       setCookie();
+     }
   }
 </script>
