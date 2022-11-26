@@ -14,7 +14,7 @@
 <body onload="checkCookie()"></body>
 <div class="container-fluid">
     <h1>Cookie Tester</h1>
-    <form onsubmit="setCookie()" method="POST">
+    <form onsubmit="setCookie()" method="GET">
         <div class="mb-3">
             <label class="form-label" for="email">Email</label>
             <input class="form-control" type="text" id="email" name="email" required />
@@ -25,11 +25,10 @@
 <script>
     function setCookie(){
       let email = form.email.value;
-      
-      const d = new Date();
-      d.setTime(d.getTime() + (30*24*60*60*1000));
-      let expires = "expires="+ d.toUTCString();
-      document.cookie = "email=" + email + ";" + expires + ";path=/";
+      let today = new Date();
+      let expiry = new Date(today.getTime() + 30 * 24 * 3600 * 1000);
+      let expires = "expires="+ expiry.toUTCString();
+      document.cookie = "email=" + escape(email) + ";" + expires + ";path=/";
     }
   function getCookie(cname){
     let name = cname + "=";
